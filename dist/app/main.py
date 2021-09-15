@@ -5,13 +5,20 @@ import json
 import sys
 import getopt
 import os
-from pathlib import Path
+import subprocess
 
 async def main(sourcefile):
     async with aiofiles.open(sourcefile, mode='r') as f:
         async for line in f:
-            await asyncio.sleep(0)
-            command = 'lighthouse --chrome-flags="--headless --no-sandbox" ' + line
+            command = 'lighthouse ' + line.strip('\n\r') + ' --chrome-flags="--headless --no-sandbox" --output html json'
+            url=line.strip("http://").strip("https://").strip('\n\r')
+            ns_records = subprocess.check_output("dig +short NS " + url.strip('www.'), shell=True).decode("utf-8").splitlines()
+            mx_records = subprocess.check_output("dig +short MX " + url.strip('www.'), shell=True).decode("utf-8").splitlines()
+            a_records = subprocess.check_output("dig +short A " + url, shell=True).decode("utf-8").splitlines()
+            f = open("/var/www/html/dns/" + url + ".json", "a")
+            f.write(json.dumps({'ns': ns_records, 'mx': mx_records, 'w': a_records}))
+            f.close()
+
             # await asyncio.create_subprocess_shell(command)
             os.system(command)
 

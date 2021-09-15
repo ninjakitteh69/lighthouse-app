@@ -31,6 +31,7 @@ if(isset($_POST["submit"])) {
     </head>
 <body>
 <a href="/"> HOME </a> &nbsp;|&nbsp; <a href="/view/"> VIEW </a>
+<br /><br />
 <form action="index.php" method="post" enctype="multipart/form-data">
   Select file to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
