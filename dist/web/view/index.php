@@ -15,7 +15,7 @@ if(isset($_GET['script'])){
 <br /><br />
 <table border="1px">
     <tr>
-        <td style="min-width: 100px;">Results</td><td style="min-width: 100px;">Performance</td><td style="min-width: 100px;">Accessibility</td><td style="min-width: 100px;">Best Practices</td><td style="min-width: 100px;">SEO</td><td style="min-width: 100px;">Progressive Web App</td><td style="min-width: 100px;">DNS</td>
+    <td style="min-width: 100px;">Domain</td><td style="min-width: 100px;">Results</td><td style="min-width: 100px;">Performance</td><td style="min-width: 100px;">Accessibility</td><td style="min-width: 100px;">Best Practices</td><td style="min-width: 100px;">SEO</td><td style="min-width: 100px;">Progressive Web App</td><td style="min-width: 100px;">DNS</td>
     </tr>
 <?php 
 $files = scandir('./');
@@ -32,7 +32,7 @@ foreach ($files as $file){
     $seo = $adata->categories->seo->score*100;
     $pwa = $adata->categories->pwa->score*100;
     echo '<tr>';
-    echo "<td><a href=\"./$file\">HTML</a> | <a href=\"./" . substr($file, 0, -4) . "json\">JSON</a></td><td>$performance</td><td>$accessibility</td><td>$best_practices</td><td>$seo</td><td>$pwa</td><td><a href=\"/dns/?domain=$requested_url\">HTML</a> | <a href=\"../dns/$requested_url.json\">JSON</a></td>"; 
+    echo "<td>$adata->requestedUrl</td><td><a href=\"./$file\">HTML</a> | <a href=\"./" . substr($file, 0, -4) . "json\">JSON</a></td><td>$performance</td><td>$accessibility</td><td>$best_practices</td><td>$seo</td><td>$pwa</td><td><a href=\"/dns/?domain=$requested_url\">HTML</a> | <a href=\"../dns/$requested_url.json\">JSON</a></td>"; 
     echo '</tr>';
 }
 ?>
