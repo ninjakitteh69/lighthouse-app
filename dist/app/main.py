@@ -15,8 +15,8 @@ async def main(sourcefile):
             ns_records = subprocess.check_output("dig +short NS " + url.strip('www.'), shell=True).decode("utf-8").splitlines()
             mx_records = subprocess.check_output("dig +short MX " + url.strip('www.'), shell=True).decode("utf-8").splitlines()
             a_records = subprocess.check_output("dig +short A " + url, shell=True).decode("utf-8").splitlines()
-            f = open("/var/www/html/dns/" + url + ".json", "a")
-            f.write(json.dumps({'ns': ns_records, 'mx': mx_records, 'w': a_records}))
+            f = open("/var/www/html/dns/" + url + ".json", "w")
+            f.write(json.dumps({'ns': ns_records, 'mx': mx_records, 'a': a_records}))
             f.close()
 
             # await asyncio.create_subprocess_shell(command)
