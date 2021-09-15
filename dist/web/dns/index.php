@@ -15,7 +15,6 @@ if(isset($_GET['domain'])){
     </tr>
     <?php
     $adata = json_decode(file_get_contents($_GET['domain'] . ".json"));
-    echo $_GET['domain'] . ".json"
     $ns = implode("<br />",$adata->ns);
     $mx = implode("<br />",$adata->mx);
     $a = implode("<br />",$adata->a);
