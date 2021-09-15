@@ -10,7 +10,7 @@ import subprocess
 async def main(sourcefile):
     async with aiofiles.open(sourcefile, mode='r') as f:
         async for line in f:
-            if(not line.startswith('http://') or not line.startswith('https://')):
+            if(not line.startswith('http://') and not line.startswith('https://')):
                 line = 'http://' + line
             command = 'lighthouse ' + line.strip('\n\r') + ' --chrome-flags="--headless --no-sandbox" --output html json'
             url=line.strip("http://").strip("https://").strip('\n\r')
