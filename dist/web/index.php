@@ -3,7 +3,7 @@ $target_dir = "./uploads/";
 
 if(isset($_POST["submit"])) {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $savefile = $target_dir . trim(basename($_FILES["fileToUpload"]["name"]), ".txt") . "-" . date('m-d-Y_hia') . '.txt';
+    $savefile = $target_dir . trim(basename($_FILES["fileToUpload"]["name"]), ".txt") . "-" . date('m-d-Y_his') . '.txt';
     $fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     $check = mime_content_type($_FILES["fileToUpload"]["tmp_name"]);
     $uploadOk = 0; 
